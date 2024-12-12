@@ -141,7 +141,8 @@ class Sequence:
             stage = self.queue.dequeue()
             stage()
             self.next_stage = datetime.now().timestamp() + 1
-
+        if self.queue.check_is_empty():
+            self.queue.enqueue(self.stage_one)
 
 red_light = Circle(
     fill=Gray,
